@@ -1,3 +1,4 @@
+from math import trunc
 title = {
     1: '_________     _____  .____   _________  ____ ___.____       _____  ________   ________ __________    _____   ',
     2: '\_   ___ \   /  _  \ |    |  \_   ___ \|    |   \    |     /  _  \ \______ \  \_____  \ \______   \  /  _  \  ',
@@ -14,6 +15,11 @@ tabla_hexadecimal = {
     'C':12, 'D':13, 'E':14, 'F':15,
     'a':10, 'b':11, 'c':12, 'd':13,
     'e':14, 'f':15
+}
+
+tabla_decimal = {
+    10:'A', 11:'B', 12:'C', 13:'D',
+    14:'E', 15:'F'
 }
 
 for i in range (1,6):
@@ -35,7 +41,26 @@ while(flag_control == True):
             tamExp -= 1
         print('\n------------------------------------------------------------- \nEl valor ingresado equivale a: '+str(valueDec)+'\n-------------------------------------------------------------\n')
     elif(op == '2'):
-        pass
+        print('\n--------------------DECIMAL A HEXADECIMAL-------------------- \nIngrese el valor a convertir:')
+        valueDec = int(input('U:\> '))
+        valueHex = ""
+        finalHex = ""
+        flag_return = True
+        while(flag_return == True):
+            temporal = valueDec/16
+            if(temporal > 0):
+                valorAgregado = (valueDec%16)
+                if(valorAgregado > 9):
+                    valueHex += tabla_decimal[valorAgregado]
+                    valueDec = trunc(temporal)
+                else:
+                    valueHex += str(valorAgregado)
+                    valueDec = trunc(temporal)
+            else:
+                flag_return = False
+        for digito in valueHex[::-1]:
+            finalHex += digito
+        print('\n------------------------------------------------------------- \nEl valor ingresado equivale a: '+str(finalHex)+'\n-------------------------------------------------------------\n')
     elif(op == '3'):
         flag_control = False
     else:
